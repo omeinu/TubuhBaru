@@ -1,0 +1,10 @@
+{
+  "title": "TubuhBaru",
+  "menuTextLabel": "Teks Menu:",
+  "imageLabel": "Gambar:",
+  "submitButton": "Kirim",
+  "weightLabel": "Berat:",
+  "saveButton": "Simpan",
+  "mealImageAlt": "gambar makanan",
+  "weightChartLabel": "Berat"
+}

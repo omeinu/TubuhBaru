@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-for="meal in meals" :key="meal.id" class="meal-card">
-      <img :src="meal.imageUrl" alt="meal image" class="meal-image" />
+      <div v-for="meal in meals" :key="meal.id" class="meal-card">
+        <img :src="meal.imageUrl" :alt="$t('mealImageAlt')" class="meal-image" />
       <h3>{{ meal.menuText }}</h3>
       <p>{{ meal.aiComment }}</p>
       <small>{{ formatDate(meal.createdAt) }}</small>

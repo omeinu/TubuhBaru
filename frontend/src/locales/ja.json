@@ -1,0 +1,10 @@
+{
+  "title": "TubuhBaru",
+  "menuTextLabel": "メニュー名:",
+  "imageLabel": "画像:",
+  "submitButton": "送信",
+  "weightLabel": "体重:",
+  "saveButton": "保存",
+  "mealImageAlt": "食事の画像",
+  "weightChartLabel": "体重"
+}

@@ -6,8 +6,10 @@
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
 import { Chart } from 'chart.js/auto'
+import { useI18n } from 'vue-i18n'
 
 const canvas = ref(null)
+const { t } = useI18n()
 
 const fetchWeights = async () => {
   const res = await axios.get('/api/weights')
@@ -24,12 +26,12 @@ onMounted(async () => {
     data: {
       labels,
       datasets: [
-        {
-          label: 'Weight',
-          data,
-          borderColor: 'rgb(75, 192, 192)',
-          fill: false,
-          tension: 0.1
+          {
+            label: t('weightChartLabel'),
+            data,
+            borderColor: 'rgb(75, 192, 192)',
+            fill: false,
+            tension: 0.1
         }
       ]
     }
