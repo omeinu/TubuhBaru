@@ -1,14 +1,14 @@
 <template>
   <form @submit.prevent="submitMeal">
     <div>
-      <label for="menuText">Menu Text:</label>
+      <label for="menuText">{{ $t('menuTextLabel') }}</label>
       <input id="menuText" v-model="menuText" required />
     </div>
     <div>
-      <label for="image">Image:</label>
+      <label for="image">{{ $t('imageLabel') }}</label>
       <input id="image" type="file" @change="onFileChange" required />
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit">{{ $t('submitButton') }}</button>
   </form>
   <p v-if="message">{{ message }}</p>
 </template>

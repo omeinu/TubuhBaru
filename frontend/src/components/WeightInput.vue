@@ -1,8 +1,8 @@
 <template>
   <form @submit.prevent="submitWeight">
-    <label for="weight">Weight:</label>
+    <label for="weight">{{ $t('weightLabel') }}</label>
     <input id="weight" type="number" step="0.1" v-model="weight" required />
-    <button type="submit">Save</button>
+    <button type="submit">{{ $t('saveButton') }}</button>
   </form>
 </template>
 
