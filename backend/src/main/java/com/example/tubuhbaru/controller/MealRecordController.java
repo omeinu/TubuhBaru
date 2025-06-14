@@ -22,7 +22,7 @@ public class MealRecordController {
     public ResponseEntity<MealRecord> uploadMealRecord(
             @RequestParam("menuText") String menuText,
             @RequestParam("image") MultipartFile image) throws IOException {
-        MealRecord record = service.processMeal(image, menuText);
+        MealRecord record = service.registerMeal(menuText, image);
         return ResponseEntity.ok(record);
     }
 }

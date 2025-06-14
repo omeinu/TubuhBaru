@@ -6,32 +6,26 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Service
 public class MealRecordService {
     private final MealRecordRepository repository;
+    private final S3Service s3Service;
+    private final ChatGptService chatGptService;
 
-    public MealRecordService(MealRecordRepository repository) {
+    public MealRecordService(MealRecordRepository repository,
+                             S3Service s3Service,
+                             ChatGptService chatGptService) {
         this.repository = repository;
+        this.s3Service = s3Service;
+        this.chatGptService = chatGptService;
     }
 
-    public MealRecord processMeal(MultipartFile file, String menuText) throws IOException {
-        String imageUrl = uploadToS3(file);
-        String analysis = analyzeMenu(menuText);
-        return repository.save(menuText, imageUrl, analysis);
-    }
-
-    // Stub method that pretends to upload to S3
-    private String uploadToS3(MultipartFile file) throws IOException {
-        String filename = file.getOriginalFilename();
-        long size = file.getSize();
-        // In a real implementation, the file would be uploaded to S3 here
-        return "https://s3.example.com/" + filename;
-    }
-
-    // Stub method that pretends to call ChatGPT API
-    private String analyzeMenu(String menuText) {
-        // In a real implementation, menuText would be sent to the ChatGPT API
-        return "analysis for: " + menuText;
+    public MealRecord registerMeal(String menuText, MultipartFile image) throws IOException {
+        String imageUrl = s3Service.uploadImage(image);
+        String aiComment = chatGptService.getMealFeedback(menuText);
+        LocalDateTime createdAt = LocalDateTime.now();
+        return repository.save(menuText, imageUrl, aiComment, createdAt);
     }
 }
