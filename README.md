@@ -20,6 +20,7 @@ The backend exposes:
 
 - `GET /api/hello` – simple hello API returning a JSON message.
 - `POST /api/meals` – accepts `menuText` and an `image` file as multipart form data.
+- `POST /api/weights` – accepts `weight` and `recordedAt` values to store a weight log.
 
 ### Frontend
 
@@ -29,7 +30,7 @@ npm install # install dependencies
 npm run dev
 ```
 
-The frontend includes a `MealInput` component that posts to `/api/meals`.
+The frontend includes `MealInput` and `WeightInput` components that post to `/api/meals` and `/api/weights` respectively.
 
 ### Running Tests
 
