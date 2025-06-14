@@ -4,6 +4,7 @@ import App from './App.vue'
 import en from './locales/en.json'
 import ja from './locales/ja.json'
 import id from './locales/id.json'
+import './bandung.css'
 
 const i18n = createI18n({
   legacy: false,
