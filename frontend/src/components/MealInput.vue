@@ -33,6 +33,9 @@ const submitMeal = async () => {
     body: formData
   })
   const data = await res.json()
-  message.value = data.message
+  // display the AI generated comment returned by the backend
+  message.value = data.aiComment
+  menuText.value = ''
+  file.value = null
 }
 </script>
