@@ -28,4 +28,8 @@ public class MealRecordService {
         LocalDateTime createdAt = LocalDateTime.now();
         return repository.save(menuText, imageUrl, aiComment, createdAt);
     }
+
+    public java.util.List<MealRecord> getAllMeals() {
+        return repository.findAll();
+    }
 }
