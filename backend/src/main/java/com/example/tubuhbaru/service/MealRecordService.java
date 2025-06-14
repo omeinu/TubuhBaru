@@ -24,7 +24,7 @@ public class MealRecordService {
 
     public MealRecord registerMeal(String menuText, MultipartFile image) throws IOException {
         String imageUrl = s3Service.uploadImage(image);
-        String aiComment = chatGptService.getMealFeedback(menuText);
+        String aiComment = chatGptService.analyze(menuText);
         LocalDateTime createdAt = LocalDateTime.now();
         return repository.save(menuText, imageUrl, aiComment, createdAt);
     }
