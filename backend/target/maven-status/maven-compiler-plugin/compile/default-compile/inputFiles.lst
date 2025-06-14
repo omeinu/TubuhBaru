@@ -1,0 +1,13 @@
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/repository/MealRecordRepository.java
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/controller/MealRecordController.java
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/service/ChatGptService.java
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/service/MealRecordService.java
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/repository/WeightRecordRepository.java
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/model/MealRecord.java
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/controller/WeightRecordController.java
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/controller/HelloController.java
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/model/WeightRecord.java
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/service/S3Service.java
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/service/WeightRecordService.java
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/config/CorsConfig.java
+/Users/vitalize_pc01/TubuhBaru/TubuhBaru/backend/src/main/java/com/example/tubuhbaru/Application.java

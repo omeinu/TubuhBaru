@@ -1,0 +1,16 @@
+com/example/tubuhbaru/controller/WeightRecordController.class
+com/example/tubuhbaru/controller/HelloController.class
+com/example/tubuhbaru/service/MealRecordService.class
+com/example/tubuhbaru/controller/WeightRecordController$WeightRequest.class
+com/example/tubuhbaru/model/WeightRecord.class
+com/example/tubuhbaru/controller/WeightRecordController$WeightResponse.class
+com/example/tubuhbaru/config/CorsConfig$1.class
+com/example/tubuhbaru/controller/MealRecordController.class
+com/example/tubuhbaru/service/S3Service.class
+com/example/tubuhbaru/service/WeightRecordService.class
+com/example/tubuhbaru/repository/WeightRecordRepository.class
+com/example/tubuhbaru/config/CorsConfig.class
+com/example/tubuhbaru/model/MealRecord.class
+com/example/tubuhbaru/Application.class
+com/example/tubuhbaru/repository/MealRecordRepository.class
+com/example/tubuhbaru/service/ChatGptService.class
