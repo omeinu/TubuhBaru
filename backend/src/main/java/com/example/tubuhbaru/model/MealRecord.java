@@ -1,16 +1,20 @@
 package com.example.tubuhbaru.model;
 
+import java.time.LocalDateTime;
+
 public class MealRecord {
     private final long id;
     private final String menuText;
     private final String imageUrl;
-    private final String analysis;
+    private final String aiComment;
+    private final LocalDateTime createdAt;
 
-    public MealRecord(long id, String menuText, String imageUrl, String analysis) {
+    public MealRecord(long id, String menuText, String imageUrl, String aiComment, LocalDateTime createdAt) {
         this.id = id;
         this.menuText = menuText;
         this.imageUrl = imageUrl;
-        this.analysis = analysis;
+        this.aiComment = aiComment;
+        this.createdAt = createdAt;
     }
 
     public long getId() {
@@ -25,7 +29,11 @@ public class MealRecord {
         return imageUrl;
     }
 
-    public String getAnalysis() {
-        return analysis;
+    public String getAiComment() {
+        return aiComment;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }
