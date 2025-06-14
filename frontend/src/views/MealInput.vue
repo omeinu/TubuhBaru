@@ -17,18 +17,22 @@ import { ref } from 'vue'
 import axios from 'axios'
 
 const menuText = ref('')
-const file = ref(null)
+const imageFile = ref(null)
 
 const onFileChange = (e) => {
-  file.value = e.target.files[0]
+  imageFile.value = e.target.files[0]
 }
 
 const submitMeal = async () => {
   const formData = new FormData()
   formData.append('menuText', menuText.value)
-  formData.append('image', file.value)
+  if (imageFile.value) {
+    formData.append('image', imageFile.value)
+  }
   try {
-    await axios.post('/api/meals', formData)
+    await axios.post('/api/meals', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
     console.log('アップロード成功')
   } catch (err) {
     console.error(err)
