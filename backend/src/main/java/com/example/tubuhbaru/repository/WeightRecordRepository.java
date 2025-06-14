@@ -5,12 +5,13 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
 public class WeightRecordRepository {
-    private final List<WeightRecord> records = new ArrayList<>();
+    private final List<WeightRecord> records = Collections.synchronizedList(new ArrayList<>());
     private final AtomicLong idGenerator = new AtomicLong(1);
 
     public WeightRecord save(double weight, LocalDateTime recordedAt) {
