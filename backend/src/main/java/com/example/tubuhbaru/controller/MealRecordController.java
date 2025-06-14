@@ -18,8 +18,8 @@ public class MealRecordController {
         this.service = service;
     }
 
-    @PostMapping("/api/mealRecords")
-    public ResponseEntity<MealRecord> uploadMealRecord(
+    @PostMapping("/api/meals")
+    public ResponseEntity<MealRecord> uploadMeal(
             @RequestParam("menuText") String menuText,
             @RequestParam("image") MultipartFile image) throws IOException {
         MealRecord record = service.registerMeal(menuText, image);
