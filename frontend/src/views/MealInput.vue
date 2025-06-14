@@ -1,14 +1,20 @@
 <template>
   <form @submit.prevent="submitMeal">
     <div>
-      <label for="menuText">Menu Text:</label>
+      <label for="menuText">{{ $t('menuTextLabel') }}</label>
       <input id="menuText" v-model="menuText" required />
     </div>
     <div>
-      <label for="image">Image:</label>
+      <label for="image">{{ $t('imageLabel') }}</label>
       <input id="image" type="file" @change="onFileChange" required />
     </div>
-    <button type="submit">Submit</button>
+    <button
+      type="submit"
+      :disabled="isSubmitting"
+      @click="submitMeal"
+    >
+      {{ $t('submitButton') }}
+    </button>
   </form>
 </template>
 
@@ -18,12 +24,15 @@ import axios from 'axios'
 
 const menuText = ref('')
 const imageFile = ref(null)
+const isSubmitting = ref(false)
 
 const onFileChange = (e) => {
   imageFile.value = e.target.files[0]
 }
 
 const submitMeal = async () => {
+  if (isSubmitting.value) return
+  isSubmitting.value = true
   const formData = new FormData()
   formData.append('menuText', menuText.value)
   if (imageFile.value) {
@@ -34,8 +43,12 @@ const submitMeal = async () => {
       headers: { 'Content-Type': 'multipart/form-data' }
     })
     console.log('アップロード成功')
+    menuText.value = ''
+    imageFile.value = null
   } catch (err) {
     console.error(err)
+  } finally {
+    isSubmitting.value = false
   }
 }
 </script>
