@@ -11,6 +11,16 @@ import java.time.LocalDateTime;
 public class WeightRecordController {
     private final WeightRecordService service;
 
+    public static class WeightResponse {
+        public double weight;
+        public LocalDateTime recordedAt;
+
+        public WeightResponse(double weight, LocalDateTime recordedAt) {
+            this.weight = weight;
+            this.recordedAt = recordedAt;
+        }
+    }
+
     public static class WeightRequest {
         public double weight;
         public LocalDateTime recordedAt;
@@ -24,5 +34,13 @@ public class WeightRecordController {
     public ResponseEntity<WeightRecord> registerWeight(@RequestBody WeightRequest request) {
         WeightRecord record = service.registerWeight(request.weight, request.recordedAt);
         return ResponseEntity.ok(record);
+    }
+
+    @GetMapping("/api/weights")
+    public ResponseEntity<java.util.List<WeightResponse>> getWeights() {
+        var list = service.getAllWeights().stream()
+                .map(r -> new WeightResponse(r.getWeight(), r.getRecordedAt()))
+                .toList();
+        return ResponseEntity.ok(list);
     }
 }
