@@ -9,14 +9,16 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
+const emit = defineEmits(['submitted'])
 
 const weight = ref('')
 
 const submitWeight = async () => {
-  await axios.post('/api/weights', {
+  const res = await axios.post('/api/weights', {
     weight: parseFloat(weight.value),
     recordedAt: new Date().toISOString()
   })
   weight.value = ''
+  emit('submitted', res.data)
 }
 </script>
