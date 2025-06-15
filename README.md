@@ -7,6 +7,45 @@ TubuhBaru is a monorepo health management application using Vue 3 and Spring Boo
 - `frontend/` - Vue 3 project powered by Vite.
 - `backend/` - Spring Boot (Java 17) backend API.
 
+## Data Flow
+
+```mermaid
+flowchart TD
+    subgraph Frontend
+        MI[MealInput] -->|POST /api/meals| API
+        WI[WeightInput] -->|POST /api/weights| API
+        ML[MealList] -->|GET /api/meals| API
+        WC[WeightChart] -->|GET /api/weights| API
+    end
+
+    subgraph Backend
+        API --> MC[MealRecordController]
+        API --> WCtl[WeightRecordController]
+        MC --> MS[MealRecordService]
+        WCtl --> WS[WeightRecordService]
+        MS --> GPT[ChatGptService]
+        MS --> MR[(MealRecordRepository)]
+        WS --> WR[(WeightRecordRepository)]
+    end
+```
+
+## Data Model
+
+```mermaid
+classDiagram
+    class MealRecord {
+        long id
+        String menuText
+        String aiComment
+        LocalDateTime createdAt
+    }
+    class WeightRecord {
+        long id
+        double weight
+        LocalDateTime recordedAt
+    }
+```
+
 ## Development
 
 ### Backend
