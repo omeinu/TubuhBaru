@@ -3,24 +3,19 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-import axios from 'axios'
+import { onMounted, ref, watch } from 'vue'
+import { useWeightStore } from '../stores/weightStore'
 import { Chart } from 'chart.js/auto'
 import { useI18n } from 'vue-i18n'
 
 const canvas = ref(null)
 const chart = ref(null)
-const weights = ref([])
 const { t } = useI18n()
-
-const fetchWeights = async () => {
-  const res = await axios.get('/api/weights')
-  weights.value = res.data
-}
+const { state, fetchWeights, addWeight: storeAddWeight } = useWeightStore()
 
 const renderChart = () => {
-  const labels = weights.value.map(w => new Date(w.recordedAt).toLocaleDateString())
-  const data = weights.value.map(w => w.weight)
+  const labels = state.weights.map(w => new Date(w.recordedAt).toLocaleDateString())
+  const data = state.weights.map(w => w.weight)
 
   if (chart.value) {
     chart.value.data.labels = labels
@@ -47,7 +42,6 @@ const renderChart = () => {
 
 const refreshChart = async () => {
   await fetchWeights()
-  renderChart()
 }
 
 const connectStream = () => {
@@ -59,14 +53,21 @@ const connectStream = () => {
 }
 
 const addWeight = (record) => {
-  weights.value.push(record)
-  renderChart()
+  storeAddWeight(record)
 }
 
 onMounted(() => {
   refreshChart()
   connectStream()
 })
+
+watch(
+  () => state.weights,
+  () => {
+    renderChart()
+  },
+  { deep: true }
+)
 
 defineExpose({ refreshChart, addWeight })
 </script>
