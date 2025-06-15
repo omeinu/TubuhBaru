@@ -1,23 +1,21 @@
-import { reactive } from 'vue'
+import { ref } from 'vue'
 import axios from 'axios'
 
-const state = reactive({
-  weights: []
-})
+const weights = ref([])
 
 const fetchWeights = async () => {
   try {
     const res = await axios.get('/api/weights')
-    state.weights = res.data
+    weights.value = res.data
   } catch (err) {
     console.error('Failed to fetch weights', err)
   }
 }
 
 const addWeight = (record) => {
-  state.weights.push(record)
+  weights.value.push(record)
 }
 
 export function useWeightStore() {
-  return { state, fetchWeights, addWeight }
+  return { weights, fetchWeights, addWeight }
 }

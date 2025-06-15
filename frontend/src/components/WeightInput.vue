@@ -12,7 +12,7 @@ import axios from 'axios'
 import { useWeightStore } from '../stores/weightStore'
 
 const emit = defineEmits(['submitted'])
-const { addWeight } = useWeightStore()
+const { addWeight, fetchWeights } = useWeightStore()
 
 const weight = ref('')
 
@@ -23,6 +23,7 @@ const submitWeight = async () => {
       recordedAt: new Date().toISOString()
     })
     addWeight(res.data)
+    await fetchWeights()
     weight.value = ''
     emit('submitted', res.data)
   } catch (err) {

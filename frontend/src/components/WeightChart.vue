@@ -11,11 +11,11 @@ import { useI18n } from 'vue-i18n'
 const canvas = ref(null)
 const chart = ref(null)
 const { t } = useI18n()
-const { state, fetchWeights, addWeight: storeAddWeight } = useWeightStore()
+const { weights, fetchWeights, addWeight: storeAddWeight } = useWeightStore()
 
 const renderChart = () => {
-  const labels = state.weights.map(w => new Date(w.recordedAt).toLocaleDateString())
-  const data = state.weights.map(w => w.weight)
+  const labels = weights.value.map(w => new Date(w.recordedAt).toLocaleDateString())
+  const data = weights.value.map(w => w.weight)
 
   if (chart.value) {
     chart.value.data.labels = labels
@@ -62,7 +62,7 @@ onMounted(() => {
 })
 
 watch(
-  () => state.weights,
+  () => weights.value,
   () => {
     renderChart()
   },
