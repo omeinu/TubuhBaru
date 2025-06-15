@@ -10,17 +10,17 @@ import { useI18n } from 'vue-i18n'
 
 const canvas = ref(null)
 const chart = ref(null)
+const weights = ref([])
 const { t } = useI18n()
 
 const fetchWeights = async () => {
   const res = await axios.get('/api/weights')
-  return res.data
+  weights.value = res.data
 }
 
-const renderChart = async () => {
-  const weights = await fetchWeights()
-  const labels = weights.map(w => new Date(w.recordedAt).toLocaleDateString())
-  const data = weights.map(w => w.weight)
+const renderChart = () => {
+  const labels = weights.value.map(w => new Date(w.recordedAt).toLocaleDateString())
+  const data = weights.value.map(w => w.weight)
 
   if (chart.value) {
     chart.value.data.labels = labels
@@ -45,8 +45,18 @@ const renderChart = async () => {
   }
 }
 
-onMounted(renderChart)
+const refreshChart = async () => {
+  await fetchWeights()
+  renderChart()
+}
 
-defineExpose({ renderChart })
+const addWeight = (record) => {
+  weights.value.push(record)
+  renderChart()
+}
+
+onMounted(refreshChart)
+
+defineExpose({ refreshChart, addWeight })
 </script>
 

@@ -25,8 +25,8 @@ import { ref } from 'vue'
 const { locale } = useI18n()
 const chart = ref(null)
 
-const onWeightAdded = () => {
-  chart.value?.renderChart()
+const onWeightAdded = (record) => {
+  chart.value?.addWeight(record)
 }
 </script>
 
