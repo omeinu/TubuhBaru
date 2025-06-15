@@ -19,7 +19,7 @@ mvn spring-boot:run
 The backend exposes:
 
 - `GET /api/hello` – simple hello API returning a JSON message.
-- `POST /api/meals` – accepts `menuText` and an `image` file as multipart form data.
+- `POST /api/meals` – accepts a JSON body with `menuText`.
 - `POST /api/weights` – accepts `weight` and `recordedAt` as JSON.
 
 ### Frontend

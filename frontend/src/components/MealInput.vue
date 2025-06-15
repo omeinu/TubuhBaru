@@ -4,10 +4,6 @@
       <label for="menuText">{{ $t('menuTextLabel') }}</label>
       <input id="menuText" v-model="menuText" required />
     </div>
-    <div>
-      <label for="image">{{ $t('imageLabel') }}</label>
-      <input id="image" type="file" @change="onFileChange" required />
-    </div>
     <button type="submit">{{ $t('submitButton') }}</button>
   </form>
   <p v-if="message">{{ message }}</p>
@@ -17,25 +13,17 @@
 import { ref } from 'vue'
 
 const menuText = ref('')
-const file = ref(null)
 const message = ref('')
 
-const onFileChange = (e) => {
-  file.value = e.target.files[0]
-}
-
 const submitMeal = async () => {
-  const formData = new FormData()
-  formData.append('menuText', menuText.value)
-  formData.append('image', file.value)
   const res = await fetch('/api/meals', {
     method: 'POST',
-    body: formData
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ menuText: menuText.value })
   })
   const data = await res.json()
   // display the AI generated comment returned by the backend
   message.value = data.aiComment
   menuText.value = ''
-  file.value = null
 }
 </script>

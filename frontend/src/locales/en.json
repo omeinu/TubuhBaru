@@ -1,10 +1,8 @@
 {
   "title": "TubuhBaru",
   "menuTextLabel": "Menu Text:",
-  "imageLabel": "Image:",
   "submitButton": "Submit",
   "weightLabel": "Weight:",
   "saveButton": "Save",
-  "mealImageAlt": "meal image",
   "weightChartLabel": "Weight"
 }
