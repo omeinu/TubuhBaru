@@ -50,12 +50,23 @@ const refreshChart = async () => {
   renderChart()
 }
 
+const connectStream = () => {
+  const es = new EventSource('/api/weights/stream')
+  es.onmessage = (e) => {
+    const record = JSON.parse(e.data)
+    addWeight(record)
+  }
+}
+
 const addWeight = (record) => {
   weights.value.push(record)
   renderChart()
 }
 
-onMounted(refreshChart)
+onMounted(() => {
+  refreshChart()
+  connectStream()
+})
 
 defineExpose({ refreshChart, addWeight })
 </script>

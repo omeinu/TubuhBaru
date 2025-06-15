@@ -4,6 +4,7 @@ import com.example.tubuhbaru.model.WeightRecord;
 import com.example.tubuhbaru.service.WeightRecordService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.time.LocalDateTime;
 
@@ -28,6 +29,15 @@ public class WeightRecordController {
 
     public WeightRecordController(WeightRecordService service) {
         this.service = service;
+    }
+
+    @GetMapping("/api/weights/stream")
+    public SseEmitter streamWeights() {
+        SseEmitter emitter = new SseEmitter();
+        service.addEmitter(emitter);
+        emitter.onCompletion(() -> service.removeEmitter(emitter));
+        emitter.onTimeout(() -> service.removeEmitter(emitter));
+        return emitter;
     }
 
     @PostMapping("/api/weights")
