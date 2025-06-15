@@ -8,8 +8,8 @@
     </select>
   </div>
   <h1>{{ $t('title') }}</h1>
-  <WeightInput />
-  <WeightChart />
+  <WeightInput @submitted="onWeightAdded" />
+  <WeightChart ref="chart" />
   <MealInput />
   <MealList />
 </template>
@@ -20,7 +20,13 @@ import MealList from './components/MealList.vue'
 import WeightInput from './components/WeightInput.vue'
 import WeightChart from './components/WeightChart.vue'
 import { useI18n } from 'vue-i18n'
+import { ref } from 'vue'
 
 const { locale } = useI18n()
+const chart = ref(null)
+
+const onWeightAdded = () => {
+  chart.value?.renderChart()
+}
 </script>
 
