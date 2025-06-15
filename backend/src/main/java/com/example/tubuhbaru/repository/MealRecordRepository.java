@@ -14,8 +14,8 @@ public class MealRecordRepository {
     private final List<MealRecord> records = Collections.synchronizedList(new ArrayList<>());
     private final AtomicLong idGenerator = new AtomicLong(1);
 
-    public MealRecord save(String menuText, String imageUrl, String aiComment, LocalDateTime createdAt) {
-        MealRecord record = new MealRecord(idGenerator.getAndIncrement(), menuText, imageUrl, aiComment, createdAt);
+    public MealRecord save(String menuText, String aiComment, LocalDateTime createdAt) {
+        MealRecord record = new MealRecord(idGenerator.getAndIncrement(), menuText, aiComment, createdAt);
         records.add(record);
         return record;
     }

@@ -4,9 +4,7 @@ import com.example.tubuhbaru.model.MealRecord;
 import com.example.tubuhbaru.service.MealRecordService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
+import java.util.Map;
 
 @RestController
 public class MealRecordController {
@@ -17,10 +15,8 @@ public class MealRecordController {
     }
 
     @PostMapping("/api/meals")
-    public ResponseEntity<MealRecord> uploadMeal(
-            @RequestParam("menuText") String menuText,
-            @RequestParam("image") MultipartFile image) throws IOException {
-        MealRecord record = service.registerMeal(menuText, image);
+    public ResponseEntity<MealRecord> uploadMeal(@RequestBody Map<String, String> body) {
+        MealRecord record = service.registerMeal(body.get("menuText"));
         return ResponseEntity.ok(record);
     }
 

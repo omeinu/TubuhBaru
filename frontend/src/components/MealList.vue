@@ -1,11 +1,10 @@
 <template>
   <div>
       <div v-for="meal in meals" :key="meal.id" class="meal-card">
-        <img :src="meal.imageUrl" :alt="$t('mealImageAlt')" class="meal-image" />
-      <h3>{{ meal.menuText }}</h3>
-      <p>{{ meal.aiComment }}</p>
-      <small>{{ formatDate(meal.createdAt) }}</small>
-    </div>
+        <h3>{{ meal.menuText }}</h3>
+        <p>{{ meal.aiComment }}</p>
+        <small>{{ formatDate(meal.createdAt) }}</small>
+      </div>
   </div>
 </template>
 
@@ -30,10 +29,6 @@ const formatDate = (d) => new Date(d).toLocaleString()
   border: 1px solid #ccc;
   padding: 1rem;
   margin-bottom: 1rem;
-}
-.meal-image {
-  max-width: 100%;
-  height: auto;
 }
 </style>
 
