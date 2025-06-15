@@ -9,16 +9,24 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
+import { useWeightStore } from '../stores/weightStore'
+
 const emit = defineEmits(['submitted'])
+const { addWeight } = useWeightStore()
 
 const weight = ref('')
 
 const submitWeight = async () => {
-  const res = await axios.post('/api/weights', {
-    weight: parseFloat(weight.value),
-    recordedAt: new Date().toISOString()
-  })
-  weight.value = ''
-  emit('submitted', res.data)
+  try {
+    const res = await axios.post('/api/weights', {
+      weight: parseFloat(weight.value),
+      recordedAt: new Date().toISOString()
+    })
+    addWeight(res.data)
+    weight.value = ''
+    emit('submitted', res.data)
+  } catch (err) {
+    console.error('Failed to register weight', err)
+  }
 }
 </script>
