@@ -40,7 +40,7 @@ const renderChart = () => {
   }
 }
 
-const refreshChart = async () => {
+const refetch = async () => {
   await fetchWeights()
 }
 
@@ -57,7 +57,7 @@ const addWeight = (record) => {
 }
 
 onMounted(() => {
-  refreshChart()
+  refetch()
   connectStream()
 })
 
@@ -69,6 +69,6 @@ watch(
   { deep: true }
 )
 
-defineExpose({ refreshChart, addWeight })
+defineExpose({ refetch, addWeight })
 </script>
 

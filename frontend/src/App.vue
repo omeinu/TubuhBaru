@@ -8,13 +8,14 @@
     </select>
   </div>
   <h1>{{ $t('title') }}</h1>
-  <WeightInput />
-  <WeightChart />
+  <WeightInput @submitted="onWeightSubmitted" />
+  <WeightChart ref="chartRef" />
   <MealInput />
   <MealList />
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import MealInput from './components/MealInput.vue'
 import MealList from './components/MealList.vue'
 import WeightInput from './components/WeightInput.vue'
@@ -22,5 +23,10 @@ import WeightChart from './components/WeightChart.vue'
 import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n()
+const chartRef = ref(null)
+
+const onWeightSubmitted = () => {
+  chartRef.value?.refetch()
+}
 </script>
 
